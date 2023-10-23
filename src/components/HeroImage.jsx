@@ -31,9 +31,14 @@ export default function HeroImage() {
                             md:mr-36 md:[text-shadow:_0_0_3em_rgba(0,0,0,0.6)]
                             lg:mr-40 lg:max-w-none"
                     >
-                        <span className="block text-2xl sm:text-3xl md:text-4xl lg:mb-4 lg:text-5xl">Embrace your</span>
-                        <span className="block text-2xl sm:text-3xl md:text-4xl lg:mb-4 lg:text-5xl">luxury with</span>
-                        <span className="block text-3xl tracking-widest text-primary-200 sm:text-4xl md:text-6xl lg:text-7xl">{ texts[0] }</span>
+                        <span aria-hidden="true" className="block text-2xl sm:text-3xl md:text-4xl lg:mb-4 lg:text-5xl">Embrace your</span>
+                        <span aria-hidden="true" className="block text-2xl sm:text-3xl md:text-4xl lg:mb-4 lg:text-5xl">luxury with</span>
+                        <span aria-hidden="true" className="block text-3xl tracking-widest text-primary-200 sm:text-4xl md:text-6xl lg:text-7xl">{texts[0]}</span>
+
+                        { /* I don't want to mess with screen readers with the typewriter effect, so I'm just going to be nice to SR users and show them the full text */}
+                        <span aria-hidden="false" className="sr-only">
+                            {texts.slice(1).map((text) => `Embrace your luxury with ${text}.`)}
+                        </span>
                     </h1>
                 </div>
             </div>
