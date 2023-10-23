@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import {
-    ShoppingBagIcon,
-    UserCircleIcon,
     Bars3Icon,
     XMarkIcon,
 } from '@heroicons/react/24/outline';
+import CartWidget from './CartWidget';
+import UserWidget from './UserWidget';
 
 export default function Navbar() {
 
@@ -41,12 +41,9 @@ export default function Navbar() {
                     </a>
                 </div>
                 <div className="flex">
-                    <a href="/" className="inline p-4 transition duration-300 hover:text-primary-600">
-                        <ShoppingBagIcon className="inline w-6" />
-                    </a>
-                    <a href="/" className="inline p-4 transition duration-300 hover:text-primary-600">
-                        <UserCircleIcon className="inline w-6" />
-                    </a>
+                    { /* Hardcoded badge count for now */ }
+                    <CartWidget badgeCount={ 42 } />
+                    <UserWidget />
                 </div>
             </div>
 

@@ -17,6 +17,18 @@ module.exports = {
             "warn",
             { allowConstantExport: true },
         ],
-        "semi": ["error", "always"], // enforce semicolons
+
+        // Disable prop-types.
+        "react/prop-types": ["off"],
+
+        // enforce semicolons, because no semicolons is a mess and prone to errors
+        "semi": ["error", "always"],
+
+        // NO unused variables, except for variables that start with an underscore (e.g. _id, _name, _index, etc.)
+        // This way we can deliberately express that we will not use the variable, but we need it for the function signature.
+        "no-unused-vars": [
+            "error",
+            { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+        ],
     },
 };
