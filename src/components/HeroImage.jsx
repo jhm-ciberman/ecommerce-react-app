@@ -34,7 +34,7 @@ export default function HeroImage() {
 
                         { /* I don't want to mess with screen readers with the typewriter effect, so I'm just going to be nice to SR users and show them the full text */}
                         <span aria-hidden="false" className="sr-only">
-                            {phrases.slice(1).map((text) => `Embrace your luxury with ${text}.`)}
+                            {phrases.map((text) => `Embrace your luxury with ${text}.`)}
                         </span>
                     </h1>
                 </div>
