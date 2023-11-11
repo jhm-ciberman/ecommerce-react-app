@@ -1,19 +1,19 @@
-import ItemListContainer from "./ItemListContainer";
+import ProductsService from "../services/ProductsService";
+import ItemListContainer from "./item-list/ItemListContainer";
+import { useParams } from "react-router";
 
 export default function CategoryPage() {
 
-    const category = {
-        id: 1,
-        title: "Category 1",
-        description: "Description 1",
-        pictureUrl: "https://picsum.photos/200"
-    };
+    const { categorySlug } = useParams();
 
     return (
         <div className="container mx-auto mt-8">
-            <h1>{category.title}</h1>
+            <h1>{categorySlug}</h1>
 
-            <ItemListContainer items={[]} />
+            <ItemListContainer
+                key={categorySlug}
+                fetchItemsCallback={() => ProductsService.instance.getCategory(categorySlug)}
+            />
         </div>
     );
 }

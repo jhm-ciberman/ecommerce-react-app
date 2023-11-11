@@ -17,26 +17,78 @@
  * @property {string} slug
  */
 
+export class FetchError extends Error {
+    constructor(message, response) {
+        super(message);
+        this.response = response;
+    }
+
+    get status() {
+        return this.response;
+    }
+}
+
 export default class ProductsService {
 
+    /** @private */
     static _instance = null;
 
     /** @returns {ProductsService} Singleton instance */
-    get instance() {
+    static get instance() {
         return ProductsService._instance || (ProductsService._instance = new ProductsService());
     }
 
-    _endpoint = 'https://fakestoreapi.com/products';
+    _endpoint = 'https://fakestoreapi.com';
 
-    _categorySlugToName = new Map(); // key: slug, value: name
+    _simulateDelay = true; // We could use the throttle from Chrome DevTools, but this is more fun.
 
-    _get(url) {
-        // In a real world scenario, we would use Axios, because it has better built in error handling than fetch
-        return fetch(`${this._endpoint}/${url}`).then(response => response.json());
+    _categorySlugToName = { // key: slug, value: name as required by the API
+        "electronics": "electronics",
+        "jewelery": "jewelery",
+        "mens-clothing": "men's clothing",
+        "womens-clothing": "women's clothing",
+    };
+
+    _delay() {
+        if (!this._simulateDelay) {
+            return Promise.resolve();
+        }
+
+        return new Promise(resolve => setTimeout(resolve, Math.random() * 1000 + 600));
     }
 
-    _toSlug(name) {
-        return name.toLowerCase().replace('\'', '-').replace(' ', '-');
+    /**
+     * Fetch data from the API.
+     *
+     * @param {string} url
+     * @returns {Promise<any>}
+     */
+    _get(url) {
+        // In a real world scenario, we would use Axios, because it has better built in error handling than fetch
+        // Just look at this ugly mess:
+        return this._delay()
+            .then(() => fetch(`${this._endpoint}${url}`))
+            .then(response => {
+                return response.ok ? response : Promise.reject(
+                    new FetchError(response.statusText, response)
+                );
+            })
+            .then(response => response.json());
+    }
+
+    /**
+     * Ensure that the array has at least `minimum` elements, repeating the array if necessary.
+     *
+     * @param {Product[]} array
+     * @param {number} minimum
+     * @returns {Product[]}
+     */
+    _take(array, minimum) {
+        const result = [];
+        while (result.length < minimum) {
+            result.push(...array);
+        }
+        return result.slice(0, minimum);
     }
 
     /**
@@ -44,8 +96,9 @@ export default class ProductsService {
      *
      * @returns {Promise<Product[]>}
      */
-    getProducts() {
-        return this._get('products');
+    getIndexProducts() {
+        return this._get('/products')
+            .then((products) => this._take(products, 20));
     }
 
     /**
@@ -55,27 +108,7 @@ export default class ProductsService {
      * @returns {Promise<Product>}
      */
     getProduct(id) {
-        return this._get(`products/${id}`);
-    }
-
-    /**
-     * Get all categories from the API.
-     *
-     * @returns {Promise<Category[]>}
-     */
-    async getCategories() {
-        const categoriesNames = await this._get('/products/categories');
-
-        const categories = categoriesNames.map(categoryName => ({
-            name: categoryName,
-            slug: this._toSlug(categoryName)
-        }));
-
-        categories.forEach(category =>
-            this._categorySlugToName.set(category.slug, category.name)
-        );
-
-        return categories;
+        return this._get(`/products/${id}`);
     }
 
     /**
@@ -86,6 +119,7 @@ export default class ProductsService {
      */
     getCategory(slug) {
         const name = this._categorySlugToName[slug];
-        return this._get(`/products/category/${name}`);
+        return this._get(`/products/category/${name}`)
+            .then((products) => this._take(products, 20));
     }
 }

@@ -18,15 +18,15 @@ export default function Navbar() {
             label: 'Home',
         },
         {
-            to: '/category/1',
+            to: '/category/mens-clothing',
             label: 'Catalogue',
         },
         {
-            to: '/category/2',
+            to: '/category/jewelery',
             label: 'Deluxe Line',
         },
         {
-            to: '/category/3',
+            to: '/category/womens-clothing',
             label: 'About',
         },
     ];
