@@ -5,6 +5,7 @@ import {
 } from '@heroicons/react/24/outline';
 import CartWidget from './CartWidget';
 import UserWidget from './UserWidget';
+import { NavLink } from 'react-router-dom';
 
 export default function Navbar() {
 
@@ -13,36 +14,36 @@ export default function Navbar() {
 
     const links = [
         {
-            href: '/',
+            to: '/',
             label: 'Home',
         },
         {
-            href: '/',
+            to: '/category/1',
             label: 'Catalogue',
         },
         {
-            href: '/',
+            to: '/category/2',
             label: 'Deluxe Line',
         },
         {
-            href: '/',
+            to: '/category/3',
             label: 'About',
         },
     ];
 
     const desktopLinks = links.map((link) => (
         <li key={link.label} className='inline-block hover:text-primary-600'>
-            <a href={link.href} className="p-4 font-thin transition duration-300  lg:px-8">
+            <NavLink to={link.to} className={({ isActive }) => `p-4 font-thin transition duration-300 lg:px-8 ${ isActive ? "text-primary-600 border-b-4 border-primary-500" : "" }`}>
                 {link.label}
-            </a>
+            </NavLink>
         </li>
     ));
 
     const mobileLinks = links.map((link) => (
-        <li key={link.label} className='inline-block w-full border-b border-slate-600 p-4 text-center hover:text-primary-600'>
-            <a href={link.href} className="font-thin lg:px-8">
+        <li key={link.label} className='border-b border-slate-600 text-center hover:text-primary-600'>
+            <NavLink to={link.to} className={({ isActive }) => `inline-block w-full font-thin p-4 lg:px-8 ${ isActive ? "text-primary-600 font-bold bg-white/10" : "" }`}>
                 {link.label}
-            </a>
+            </NavLink>
         </li>
     ));
 

@@ -1,30 +1,25 @@
 //import { useState } from 'react'
 import Navbar from "@components/Navbar";
-import HeroImage from "@components/HeroImage";
-import ItemListContainer from "@components/ItemListContainer";
-import CategoryCard from "@components/CategoryCard";
-import categoryForHimImage from "@assets/images/category-for-him.jpg";
-import categoryHandbagsImage from "@assets/images/category-handbags.jpg";
-import categoryWinterImage from "@assets/images/category-winter.jpg";
+
+import { Route, Routes } from "react-router";
+import { BrowserRouter } from "react-router-dom";
+
+import HomePage from "./components/HomePage";
+import CategoryPage from "./components/CategoryPage";
+import ItemDetailPage from "./components/ItemDetailPage";
 
 export default function App() {
     //const [count, setCount] = useState(0)
 
     return (
-        <>
+        <BrowserRouter>
             <Navbar className="sticky top-0 z-50" />
 
-            <HeroImage />
-
-            <main className="container mx-auto mb-10 px-4 py-6">
-                <div className="my-4 grid grid-cols-1 gap-6 sm:grid-cols-3">
-                    <CategoryCard imgSrc={categoryForHimImage} imgAlt="For Him" title="For Him" />
-                    <CategoryCard imgSrc={categoryHandbagsImage} imgAlt="Handbags" title="Handbags" />
-                    <CategoryCard imgSrc={categoryWinterImage} imgAlt="Winter" title="Winter" />
-                </div>
-
-                <ItemListContainer greeting="Welcome to Laretto" />
-            </main>
-        </>
+            <Routes>
+                <Route exact path="/" element={<HomePage />} />
+                <Route exact path="/category/:categoryId" element={<CategoryPage />} />
+                <Route exact path="/item/:itemId" element={<ItemDetailPage />} />
+            </Routes>
+        </BrowserRouter>
     );
 }
