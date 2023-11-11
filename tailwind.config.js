@@ -13,6 +13,11 @@ module.exports = {
             colors: {
                 "primary": colors.amber,
             },
+            letterSpacing: { // tracking
+                "2widest": "0.1em",
+                "3widest": "0.3em",
+                "5widest": "0.5em",
+            },
         },
     },
 };

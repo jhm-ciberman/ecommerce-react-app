@@ -42,6 +42,8 @@ export default class ProductsService {
 
     _simulateDelay = true; // We could use the throttle from Chrome DevTools, but this is more fun.
 
+    _simulateErrorChance = 0.1; // 10% chance of failure. This is only for demonstration purposes.
+
     _categorySlugToName = { // key: slug, value: name as required by the API
         "electronics": "electronics",
         "jewelery": "jewelery",
@@ -57,6 +59,12 @@ export default class ProductsService {
         return new Promise(resolve => setTimeout(resolve, Math.random() * 1000 + 600));
     }
 
+    _fakeError() {
+        if (Math.random() < this._simulateErrorChance) {
+            throw new Error('Simulated network error');
+        }
+    }
+
     /**
      * Fetch data from the API.
      *
@@ -67,6 +75,7 @@ export default class ProductsService {
         // In a real world scenario, we would use Axios, because it has better built in error handling than fetch
         // Just look at this ugly mess:
         return this._delay()
+            .then(() => this._fakeError())
             .then(() => fetch(`${this._endpoint}${url}`))
             .then(response => {
                 return response.ok ? response : Promise.reject(
@@ -112,14 +121,19 @@ export default class ProductsService {
     }
 
     /**
-     * Get all products from a category.
+     * Gets the given category from the API with all the items in it.
      *
      * @param {string} slug The category slug
-     * @returns {Promise<Product[]>}
+     * @returns {Promise<{ name: string, Product[]}>}
      */
     getCategory(slug) {
         const name = this._categorySlugToName[slug];
         return this._get(`/products/category/${name}`)
-            .then((products) => this._take(products, 20));
+            .then((items) => ({
+                // In a real world scenario, we would fetch in the same request the category name, banner image, navigation breadcrumbs
+                // and pagination metadata(nextPage, previousPage, etc.) and return them here in this object.
+                name: name,
+                items: this._take(items, 20),
+            }));
     }
 }
