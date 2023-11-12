@@ -8,7 +8,6 @@ import { NavLink } from 'react-router-dom';
 
 export default function Navbar() {
 
-    // eslint-disable-next-line no-unused-vars
     const [navbarOpen, setNavbarOpen] = useState(true);
 
     const links = [
