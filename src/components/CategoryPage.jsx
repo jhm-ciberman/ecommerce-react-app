@@ -3,6 +3,7 @@ import ProductsService from "../services/ProductsService";
 import ItemListContainer from "./item-list/ItemListContainer";
 import { useParams } from "react-router";
 import LoadingSpinner from "./LoadingSpinner";
+import NetworkErrorCard from "./NetworkErrorCard";
 
 export default function CategoryPage() {
 
@@ -38,19 +39,13 @@ export default function CategoryPage() {
 
 
     if (error) {
-        return (
-            <div className="container mx-auto flex h-[400px] items-center justify-center">
-                <p className="text-2xl font-bold text-red-500">
-                    Oops! Something went wrong when loading this page. Please refresh the page or try again later.
-                </p>
-            </div>
-        );
+        return <NetworkErrorCard />;
     }
 
     const headerElement = (
-        <div className="border-b-4 border-primary-200 bg-primary-100">
-            <div className="container mx-auto flex h-[180px] items-center justify-center">
-                <h1 className="font-display text-3xl font-bold uppercase tracking-5widest text-primary-600">
+        <div className="border-b-2 border-primary-500 bg-gradient-to-br from-gray-400 to-slate-600">
+            <div className="container mx-auto flex h-[160px] items-center justify-center">
+                <h1 className="font-display text-3xl font-bold uppercase tracking-5widest text-primary-100 [text-shadow:_0_0_1.5em_rgba(0,0,0,1)]">
                     { categoryName }
                 </h1>
             </div>
