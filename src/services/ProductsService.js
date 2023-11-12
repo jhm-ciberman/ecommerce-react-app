@@ -42,7 +42,7 @@ export default class ProductsService {
 
     _simulateDelay = true; // We could use the throttle from Chrome DevTools, but this is more fun.
 
-    _simulateErrorChance = 0.0; // 10% chance of failure. This is only for demonstration purposes.
+    _simulateErrorChance = 0.1; // 10% chance of failure. This is only for demonstration purposes.
 
     _categorySlugToName = { // key: slug, value: name as required by the API
         "electronics": "electronics",
