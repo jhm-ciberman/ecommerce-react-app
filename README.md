@@ -2,6 +2,9 @@
 
 A simple ecommerce project for the Coderhouse ReactJS course. The project uses ReactJS and TailwindCSS.
 
+![image](https://github.com/jhm-ciberman/ecommerce-react-app/assets/7988351/174e786e-b561-4e6e-8b3b-d55983de5e64)
+
+
 ## Installation
 
 ```bash
