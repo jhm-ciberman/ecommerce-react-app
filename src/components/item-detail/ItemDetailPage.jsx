@@ -2,12 +2,14 @@ import { useParams } from "react-router";
 import ItemDetail from "./ItemDetail";
 import ProductsService from "../../services/ProductsService";
 import { useEffect, useState } from "react";
+import ItemListContainer from "../item-list/ItemListContainer";
 
 export default function ItemDetailPage() {
 
     const { itemId } = useParams();
 
     const [item, setItem] = useState(null);
+    const [relatedItems, setRelatedItems] = useState([]);
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -21,6 +23,7 @@ export default function ItemDetailPage() {
             try {
                 const item = await ProductsService.instance.getProduct(itemId);
                 setItem(item);
+                setRelatedItems(item.related || []);
             } catch (error) {
                 setError(error);
             } finally {
@@ -32,12 +35,12 @@ export default function ItemDetailPage() {
     }, [itemId]);
 
 
-
     return (
-        <div className="container mx-auto mt-8">
-            <h1>ItemDetailPage</h1>
-
+        <div className="container mx-auto my-8">
             <ItemDetail item={item} loading={loading} error={error} />
+
+            {relatedItems.length > 0 && !error && !loading
+                && <ItemListContainer items={relatedItems} title={`More from ${item?.category}`} />}
         </div>
     );
 }

@@ -45,9 +45,9 @@ export default function CategoryPage() {
     );
 
     return (
-        <>
+        <div>
             { !error ? headerElement : null }
             { <ItemListContainer loading={loading} error={error} items={items} /> }
-        </>
+        </div>
     );
 }

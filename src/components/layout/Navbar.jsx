@@ -19,15 +19,15 @@ export default function Navbar() {
         },
         {
             to: '/category/mens-clothing',
-            label: 'Catalogue',
-        },
-        {
-            to: '/category/jewelery',
-            label: 'Deluxe Line',
+            label: 'For Him',
         },
         {
             to: '/category/womens-clothing',
-            label: 'About',
+            label: 'For Her',
+        },
+        {
+            to: '/category/jewelery',
+            label: 'Jewelery',
         },
     ];
 
@@ -50,9 +50,9 @@ export default function Navbar() {
     return (
         <nav className="bg-white text-slate-700 shadow md:backdrop-blur" role="navigation">
             <div className="container relative mx-auto flex h-16 items-center justify-between">
-                <button className="inset-y-0 block p-4 transition duration-300 hover:text-primary-600 md:hidden">
+                <button className="inset-y-0 block p-4 transition duration-300 hover:text-primary-600 md:hidden" onClick={() => setNavbarOpen(!navbarOpen)}>
                     <span className="sr-only">Open main menu</span>
-                    { navbarOpen
+                    { !navbarOpen
                         ? <Bars3Icon className="inline w-6" aria-hidden="true" />
                         : <XMarkIcon className="inline w-6" aria-hidden="true" />
                     }
@@ -70,11 +70,13 @@ export default function Navbar() {
                 </div>
             </div>
 
-            <div className="bg-slate-700 uppercase tracking-widest text-slate-100 md:hidden">
-                <ul className="container mx-auto flex flex-col">
-                    { mobileLinks }
-                </ul>
-            </div>
+            { navbarOpen &&
+                <div className="bg-slate-700 uppercase tracking-widest text-slate-100 md:hidden">
+                    <ul className="container mx-auto flex flex-col">
+                        {mobileLinks}
+                    </ul>
+                </div>
+            }
         </nav>
     );
 }

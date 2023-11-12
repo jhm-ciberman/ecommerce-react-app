@@ -20,7 +20,7 @@ export default function ItemDetail({ item, loading, error }) {
             <div className="col-span-1 p-10 xl:col-span-2">
                 <img
                     alt={item.title}
-                    className="mx-auto block aspect-square h-auto max-h-[500px] w-full object-contain"
+                    className="mx-auto block aspect-square h-auto max-h-[500px] w-full max-w-[500px] object-contain"
                     src={item.image} />
             </div>
             <div className="bg-orange-50 p-10">

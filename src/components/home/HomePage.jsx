@@ -36,35 +36,33 @@ export default function HomePage() {
 
     return (
         <>
-            <main>
-                <HeroImage />
-                <div className="mb-10 bg-slate-200 p-6">
-                    <div className="container mx-auto grid grid-cols-1 gap-6 sm:grid-cols-3">
-                        <CategoryCard
-                            to="/category/mens-clothing"
-                            imgSrc={categoryForHimImage}
-                            imgAlt="For Him"
-                            title="For Him"
-                        />
-                        <CategoryCard
-                            to="/category/womens-clothing"
-                            imgSrc={categoryHandbagsImage}
-                            imgAlt="Handbags"
-                            title="Handbags"
-                        />
-                        <CategoryCard
-                            to="/category/jewelery"
-                            imgSrc={categoryWinterImage}
-                            imgAlt="Winter"
-                            title="Winter"
-                        />
-                    </div>
+            <HeroImage />
+            <div className="mb-10 bg-slate-200 p-6">
+                <div className="container mx-auto grid grid-cols-1 gap-6 sm:grid-cols-3">
+                    <CategoryCard
+                        to="/category/mens-clothing"
+                        imgSrc={categoryForHimImage}
+                        imgAlt="For Him"
+                        title="For Him"
+                    />
+                    <CategoryCard
+                        to="/category/womens-clothing"
+                        imgSrc={categoryHandbagsImage}
+                        imgAlt="Handbags"
+                        title="Handbags"
+                    />
+                    <CategoryCard
+                        to="/category/jewelery"
+                        imgSrc={categoryWinterImage}
+                        imgAlt="Winter"
+                        title="Winter"
+                    />
                 </div>
+            </div>
 
-                {
-                    <ItemLIstContainer loading={loading} error={error} items={items} title={"Latest trends"} />
-                }
-            </main>
+            {
+                <ItemLIstContainer loading={loading} error={error} items={items} title={"Latest trends"} />
+            }
         </>
     );
 }

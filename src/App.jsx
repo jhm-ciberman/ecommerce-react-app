@@ -13,11 +13,13 @@ export default function App() {
         <BrowserRouter>
             <Navbar className="sticky top-0 z-50" />
 
-            <Routes>
-                <Route exact path="/" element={<HomePage />} />
-                <Route exact path="/category/:categorySlug" element={<CategoryPage />} />
-                <Route exact path="/item/:itemId" element={<ItemDetailPage />} />
-            </Routes>
+            <main>
+                <Routes>
+                    <Route exact path="/" element={<HomePage />} />
+                    <Route exact path="/category/:categorySlug" element={<CategoryPage />} />
+                    <Route exact path="/item/:itemId" element={<ItemDetailPage />} />
+                </Routes>
+            </main>
         </BrowserRouter>
     );
 }

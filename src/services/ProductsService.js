@@ -117,7 +117,23 @@ export default class ProductsService {
      * @returns {Promise<Product>}
      */
     getProduct(id) {
-        return this._get(`/products/${id}`);
+        return this._get(`/products/${id}`)
+            .then(async (product) => {
+                return {
+                    ...product,
+                    related: await this._getRelatedProducts(product)
+                };
+            }
+        );
+    }
+
+    _getRelatedProducts(product) {
+        return this._get(`/products/category/${product.category}`)
+            .then((products) => {
+                // Filter out the current product from the related products
+                return products.filter((p) => p.id !== product.id);
+            })
+            .then((products) => this._take(products, 6));
     }
 
     /**
