@@ -18,7 +18,7 @@ export default function ItemListContainer({ items, loading, error, title, classN
     }
 
     return (
-        <div className={`container mx-auto mt-8 ${className}`}>
+        <div className={`container mx-auto my-8 ${className}`}>
             {
                 title ? (
                     <h2 className="mb-4 text-3xl tracking-widest text-slate-600">

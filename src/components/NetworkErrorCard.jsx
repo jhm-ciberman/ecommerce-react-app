@@ -5,7 +5,7 @@ export default function NetworkErrorCard() {
     // handle offline mode and have different messages for 422 (validation errors), 404 (not found), etc.
 
     return (
-        <div className="container mx-auto mt-16 flex items-center justify-center  text-gray-500">
+        <div className="container mx-auto my-16 flex items-center justify-center text-gray-500">
             <div className="mr-4 flex flex-col items-center justify-center rounded-lg border border-gray-500/20 bg-white p-10 shadow-md">
                 <SignalSlashIcon className="h-14 w-14" />
                 <p className="mt-8 w-2/3 text-center text-xl font-bold">

@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import HomePage from "./components/home/HomePage";
 import CategoryPage from "./components/category/CategoryPage";
 import ItemDetailPage from "./components/item-detail/ItemDetailPage";
+import Footer from "./components/layout/Footer";
 
 export default function App() {
     return (
@@ -14,12 +15,15 @@ export default function App() {
             <Navbar className="sticky top-0 z-50" />
 
             <main>
+
                 <Routes>
                     <Route exact path="/" element={<HomePage />} />
                     <Route exact path="/category/:categorySlug" element={<CategoryPage />} />
                     <Route exact path="/item/:itemId" element={<ItemDetailPage />} />
                 </Routes>
             </main>
+
+            <Footer />
         </BrowserRouter>
     );
 }
