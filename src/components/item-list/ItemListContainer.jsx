@@ -21,7 +21,7 @@ export default function ItemListContainer({ items, loading, error, title, classN
         <div className={`container mx-auto mt-8 ${className}`}>
             {
                 title ? (
-                    <h2 className="mb-4 text-3xl tracking-2widest text-slate-600">
+                    <h2 className="mb-4 text-3xl tracking-widest text-slate-600">
                         <ChevronDoubleRightIcon className="mr-4 inline-block h-8 w-8 text-primary-500" />
                         {title}
                     </h2>

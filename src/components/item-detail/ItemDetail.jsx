@@ -24,7 +24,7 @@ export default function ItemDetail({ item, loading, error }) {
                     src={item.image} />
             </div>
             <div className="bg-orange-50 p-10">
-                <p className="mb-2 text-base font-thin normal-case tracking-wider text-gray-600 dark:text-white ">
+                <p className="mb-2 text-base font-thin capitalize tracking-wider text-gray-600 dark:text-white">
                     {item.category}
                 </p>
                 <h1 className="mb-2 font-display text-3xl font-thin tracking-wider text-gray-700/90 dark:text-white ">

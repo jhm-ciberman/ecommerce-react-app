@@ -14,6 +14,8 @@ export default function CategoryPage() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        let cancelled = false;
+
         async function fetchItems() {
             setLoading(true);
             setError(null);
@@ -22,6 +24,8 @@ export default function CategoryPage() {
 
             try {
                 const category = await ProductsService.instance.getCategory(categorySlug);
+                if (cancelled) return;
+
                 setItems(category.items);
                 setCategoryName(category.name);
             } catch (error) {
@@ -32,6 +36,8 @@ export default function CategoryPage() {
         }
 
         fetchItems();
+
+        return () => (cancelled = true);
     }, [categorySlug]);
 
     const headerElement = (
@@ -45,7 +51,7 @@ export default function CategoryPage() {
     );
 
     return (
-        <div>
+        <div className="mb-8">
             { !error ? headerElement : null }
             { <ItemListContainer loading={loading} error={error} items={items} /> }
         </div>

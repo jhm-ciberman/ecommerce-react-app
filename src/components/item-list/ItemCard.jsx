@@ -7,13 +7,15 @@ export default function ItemCard({ item }) {
     return (
         <Link to={`/item/${item.id}`} className="block">
             <div className="
-                h-full overflow-hidden rounded-lg bg-white p-4 shadow-md transition
+                flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-md transition
                 hover:border-primary-600/40 hover:shadow-lg hover:shadow-primary-600/20">
-                <img
-                    alt={item.title}
-                    className="block aspect-square h-auto w-full object-contain"
-                    src={item.image} />
-                <div className="mt-8 w-full bg-white dark:bg-gray-800">
+                <div className="relative w-full p-4">
+                    <img
+                        alt={item.title}
+                        className="block aspect-square h-auto w-full object-contain"
+                        src={item.image} />
+                </div>
+                <div className="w-full grow p-4">
                     <p className="mb-2 text-lg font-thin tracking-widest text-primary-600 dark:text-primary-400 ">
                         {price} USD
                     </p>

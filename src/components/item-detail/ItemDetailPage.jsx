@@ -15,6 +15,8 @@ export default function ItemDetailPage() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        let cancelled = false;
+
         async function fetchItems() {
             setLoading(true);
             setError(null);
@@ -22,6 +24,8 @@ export default function ItemDetailPage() {
 
             try {
                 const item = await ProductsService.instance.getProduct(itemId);
+                if (cancelled) return;
+
                 setItem(item);
                 setRelatedItems(item.related || []);
             } catch (error) {
@@ -32,6 +36,8 @@ export default function ItemDetailPage() {
         }
 
         fetchItems();
+
+        return () => (cancelled = true);
     }, [itemId]);
 
 
