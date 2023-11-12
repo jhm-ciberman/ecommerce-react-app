@@ -4,7 +4,6 @@ import {
     XMarkIcon,
 } from '@heroicons/react/24/outline';
 import CartWidget from './CartWidget';
-import UserWidget from './UserWidget';
 import { NavLink } from 'react-router-dom';
 
 export default function Navbar() {
@@ -66,13 +65,12 @@ export default function Navbar() {
                 <div className="flex">
                     { /* Hardcoded badge count for now */ }
                     <CartWidget badgeCount={ 42 } />
-                    <UserWidget />
                 </div>
             </div>
 
             { navbarOpen &&
                 <div className="bg-slate-700 uppercase tracking-widest text-slate-100 md:hidden">
-                    <ul className="container mx-auto flex flex-col">
+                    <ul className="mx-auto flex flex-col">
                         {mobileLinks}
                     </ul>
                 </div>

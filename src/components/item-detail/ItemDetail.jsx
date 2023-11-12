@@ -16,7 +16,7 @@ export default function ItemDetail({ item, loading, error }) {
     }
 
     return (
-        <div className="grid grid-cols-1 gap-4 overflow-hidden rounded-xl bg-white  shadow-md lg:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 overflow-hidden rounded-xl bg-white shadow-md lg:grid-cols-2 xl:grid-cols-3">
             <div className="col-span-1 p-10 xl:col-span-2">
                 <img
                     alt={item.title}
