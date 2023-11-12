@@ -107,7 +107,7 @@ export default class ProductsService {
      */
     getIndexProducts() {
         return this._get('/products')
-            .then((products) => this._take(products, 20));
+            .then((products) => this._take(products, 24));
     }
 
     /**
@@ -133,7 +133,7 @@ export default class ProductsService {
                 // In a real world scenario, we would fetch in the same request the category name, banner image, navigation breadcrumbs
                 // and pagination metadata(nextPage, previousPage, etc.) and return them here in this object.
                 name: name,
-                items: this._take(items, 20),
+                items: this._take(items, 24),
             }));
     }
 }

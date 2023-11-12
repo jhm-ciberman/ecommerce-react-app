@@ -15,7 +15,7 @@ export default function HeroImage() {
 
     return (
         <header
-            className="relative h-[20rem] overflow-hidden bg-slate-400 bg-cover object-bottom md:h-[30rem] xl:h-[45rem]"
+            className="relative h-[15rem] overflow-hidden bg-slate-400 bg-cover object-bottom md:h-[20rem] xl:h-[25rem]"
             style={{ backgroundImage: `url(${heroImage})` }}
         >
             <div className="absolute inset-0 bg-gradient-to-t from-slate-700/30 to-transparent">

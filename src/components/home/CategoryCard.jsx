@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function CategoryCard({ imgSrc, imgAlt, title, to }) {
 
     return (
-        <Link className="relative aspect-video cursor-pointer overflow-hidden rounded-lg shadow-lg" to={to}>
+        <Link className="relative aspect-[3/1] cursor-pointer overflow-hidden rounded-lg shadow-lg md:aspect-[2/1]" to={to}>
             <img
                 className="
                     aspect-video object-cover object-center

@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 
 import HomePage from "./components/home/HomePage";
-import CategoryPage from "./components/CategoryPage";
+import CategoryPage from "./components/category/CategoryPage";
 import ItemDetailPage from "./components/item-detail/ItemDetailPage";
 
 export default function App() {

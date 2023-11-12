@@ -7,7 +7,7 @@ export default function ItemCard({ item }) {
     return (
         <Link to={`/item/${item.id}`} className="block">
             <div className="
-                h-full overflow-hidden rounded-lg border border-slate-200 p-4 shadow-md transition
+                h-full overflow-hidden rounded-lg bg-white p-4 shadow-md transition
                 hover:border-primary-600/40 hover:shadow-lg hover:shadow-primary-600/20">
                 <img
                     alt={item.title}
