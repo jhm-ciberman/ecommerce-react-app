@@ -3,14 +3,17 @@ import "./QuantitySelector.css";
 
 export default function QuantitySelector({ min, max, value, onChange }) {
 
+    const canDecrease = value > min;
+    const canIncrease = value < max;
+
     function handleDecrease() {
-        if (value > min) {
+        if (canDecrease) {
             onChange(value - 1);
         }
     }
 
     function handleIncrease() {
-        if (value < max) {
+        if (canIncrease) {
             onChange(value + 1);
         }
     }
@@ -21,9 +24,17 @@ export default function QuantitySelector({ min, max, value, onChange }) {
         onChange(numValue);
     }
 
+
+
     return (
-        <div className="quantity-selector flex items-stretch justify-center overflow-hidden rounded-full border border-slate-200 bg-white">
-            <button className="px-4 py-3 text-2xl text-slate-600 hover:bg-primary-50 hover:text-primary-600" onClick={handleDecrease} aria-label='Decrease quantity'>
+        <div className="quantity-selector flex items-stretch justify-center overflow-hidden rounded-full border border-slate-300 bg-white">
+            <button
+                className="
+                    px-4 py-3 text-2xl text-slate-600 hover:bg-primary-50 hover:text-primary-600
+                    disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-300"
+                onClick={handleDecrease}
+                disabled={!canDecrease}
+                aria-label='Decrease quantity'>
                 <MinusIcon className="h-5 w-5" />
             </button>
 
@@ -34,7 +45,13 @@ export default function QuantitySelector({ min, max, value, onChange }) {
                 value={value}
                 onChange={(e) => handleChange(e.target.value)} />
 
-            <button className="px-4 py-3 text-2xl text-slate-600 hover:bg-primary-50 hover:text-primary-600" onClick={handleIncrease} aria-label='Increase quantity'>
+            <button
+                className="
+                    px-4 py-3 text-2xl text-slate-600 hover:bg-primary-50 hover:text-primary-600
+                    disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-300"
+                onClick={handleIncrease}
+                disabled={!canIncrease}
+                aria-label='Increase quantity'>
                 <PlusIcon className="h-5 w-5" />
             </button>
         </div>

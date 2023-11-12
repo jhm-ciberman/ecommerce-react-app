@@ -1,13 +1,22 @@
+import { useState } from "react";
 import LoadingSpinner from "../LoadingSpinner";
 import NetworkErrorCard from "../NetworkErrorCard";
 import QuantitySelector from "./QuantitySelector";
 
 export default function ItemDetail({ item, loading, error }) {
 
+    const [quantity, setQuantity] = useState(1);
 
+    function handleQuantityChange(newValue) {
+        setQuantity(newValue);
+    }
+
+    function handleAddToCart() {
+        window.alert(`Adding ${quantity} of ${item.title} to cart`);
+    }
 
     if (error) {
-        return <NetworkErrorCard />;
+        return <NetworkErrorCard error={error} />;
     }
 
     if (loading) {
@@ -16,6 +25,10 @@ export default function ItemDetail({ item, loading, error }) {
                 <LoadingSpinner className="h-14 w-14" />
             </div>
         );
+    }
+
+    if (!item) {
+        return <></>;
     }
 
     return (
@@ -34,7 +47,7 @@ export default function ItemDetail({ item, loading, error }) {
                     {item.title}
                 </h1>
                 <p className="mb-2 mt-8 text-3xl font-thin tracking-widest text-primary-600">
-                    {item.price} USD
+                    {item.price.toFixed(2)} USD
                 </p>
                 <p className="mb-2 mt-4 text-base font-thin tracking-wider text-gray-600">
                     {item.description}
@@ -45,10 +58,13 @@ export default function ItemDetail({ item, loading, error }) {
                         <p className="ml-4 text-base font-thin tracking-wider text-gray-600">
                             Quantity
                         </p>
-                        <QuantitySelector min={1} max={10} value={1} onChanged={() => { }} />
+                        <QuantitySelector min={item.min} max={item.max} value={quantity} onChange={handleQuantityChange} />
                     </div>
                     <div className="mt-4">
-                        <button className="w-full rounded-full bg-primary-600 px-4 py-3 text-base font-thin uppercase tracking-wider text-white hover:bg-primary-700 focus:ring-2 focus:ring-primary-600/50">
+                        <button
+                            className="w-full rounded-full bg-primary-600 px-4 py-3 text-base font-thin uppercase tracking-wider text-white hover:bg-primary-700 focus:ring-2 focus:ring-primary-600/50"
+                            onClick={handleAddToCart}
+                        >
                             Add to cart
                         </button>
                     </div>

@@ -42,7 +42,7 @@ export default class ProductsService {
 
     _simulateDelay = true; // We could use the throttle from Chrome DevTools, but this is more fun.
 
-    _simulateErrorChance = 0.1; // 10% chance of failure. This is only for demonstration purposes.
+    _simulateErrorChance = 0.0; // 10% chance of failure. This is only for demonstration purposes.
 
     _categorySlugToName = { // key: slug, value: name as required by the API
         "electronics": "electronics",
@@ -51,7 +51,7 @@ export default class ProductsService {
         "womens-clothing": "women's clothing",
     };
 
-    _delay() {
+    _fakeDelay() {
         if (!this._simulateDelay) {
             return Promise.resolve();
         }
@@ -65,6 +65,29 @@ export default class ProductsService {
         }
     }
 
+    _ensureContentLength(response) {
+        // FakeStoreAPI returns 200 with empty body instead of 404 for missing resource. Let's fix it client side.
+        if (response.headers.get('Content-Length') === '0') {
+            return new window.Response(response.body, {
+                status: 404,
+                headers: response.headers
+            });
+        }
+        return response;
+    }
+
+    _ensureOk(response) {
+        if (!response.ok) {
+            throw new FetchError(response.statusText, response);
+        }
+        return response;
+    }
+
+    _handleError(error) {
+        console.error('API error:', error);
+        throw error;
+    }
+
     /**
      * Fetch data from the API.
      *
@@ -72,17 +95,15 @@ export default class ProductsService {
      * @returns {Promise<any>}
      */
     _get(url) {
-        // In a real world scenario, we would use Axios, because it has better built in error handling than fetch
+        // In a real world scenario, we would use Axios, because it has better built in error handling than native fetch
         // Just look at this ugly mess:
-        return this._delay()
+        return this._fakeDelay()
             .then(() => this._fakeError())
             .then(() => fetch(`${this._endpoint}${url}`))
-            .then(response => {
-                return response.ok ? response : Promise.reject(
-                    new FetchError(response.statusText, response)
-                );
-            })
-            .then(response => response.json());
+            .then(response => this._ensureContentLength(response))
+            .then(response => this._ensureOk(response))
+            .then(response => response.json())
+            .catch(error => this._handleError(error));
     }
 
     /**
@@ -121,6 +142,8 @@ export default class ProductsService {
             .then(async (product) => {
                 return {
                     ...product,
+                    min: 1,
+                    max: 10,
                     related: await this._getRelatedProducts(product)
                 };
             }
