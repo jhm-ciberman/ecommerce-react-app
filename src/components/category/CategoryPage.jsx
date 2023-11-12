@@ -37,7 +37,7 @@ export default function CategoryPage() {
     const headerElement = (
         <div className="border-b-2 border-primary-500 bg-gradient-to-br from-slate-200 to-gray-500">
             <div className="container mx-auto flex h-[160px] items-center justify-center">
-                <h1 className="font-display text-3xl font-bold uppercase tracking-5widest text-white [text-shadow:_0_0_1.5em_rgba(0,0,0,1)]">
+                <h1 className="text-3xl font-light capitalize tracking-3widest text-white [text-shadow:_0_0_1.5em_rgba(0,0,0,1)]">
                     { categoryName }
                 </h1>
             </div>
