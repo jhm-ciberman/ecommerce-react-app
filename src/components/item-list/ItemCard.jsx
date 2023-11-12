@@ -16,10 +16,10 @@ export default function ItemCard({ item }) {
                         src={item.image} />
                 </div>
                 <div className="w-full grow p-4">
-                    <p className="mb-2 text-lg font-thin tracking-widest text-primary-600 dark:text-primary-400 ">
+                    <p className="mb-2 text-lg font-thin tracking-widest text-primary-600">
                         {price} USD
                     </p>
-                    <p className="mb-2 line-clamp-3 text-base font-thin tracking-wider text-gray-600 dark:text-white ">
+                    <p className="mb-2 line-clamp-3 text-base font-thin tracking-wider text-gray-600">
                         {item.title}
                     </p>
                 </div>

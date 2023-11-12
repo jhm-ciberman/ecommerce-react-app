@@ -1,0 +1,12 @@
+/* Chrome, Safari, Edge, Opera */
+.quantity-selector input::-webkit-outer-spin-button,
+.quantity-selector input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.quantity-selector input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
