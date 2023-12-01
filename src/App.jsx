@@ -6,6 +6,7 @@ import CategoryPage from "./components/category/CategoryPage";
 import ItemDetailPage from "./components/item-detail/ItemDetailPage";
 import AppLayout from "./components/layout/AppLayout";
 import NetworkErrorCard from "./components/NetworkErrorCard";
+import CartPage from "./components/cart/CartPage";
 
 export default function App() {
     return (
@@ -15,6 +16,7 @@ export default function App() {
                     <Route exact path="/" element={<HomePage />} />
                     <Route exact path="/category/:categorySlug" element={<CategoryPage />} />
                     <Route exact path="/item/:itemId" element={<ItemDetailPage />} />
+                    <Route exact path="/cart" element={<CartPage />} />
 
                     { /* 404 */}
                     <Route path="*" element={<NetworkErrorCard status={404} />} />

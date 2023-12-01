@@ -1,7 +1,7 @@
+import AppHeader from "../AppHeader";
 import LoadingSpinner from "../LoadingSpinner";
 import NetworkErrorCard from "../NetworkErrorCard";
 import ItemCard from "./ItemCard";
-import { ChevronDoubleRightIcon } from "@heroicons/react/24/solid";
 
 export default function ItemListContainer({ items, loading, error, title, className }) {
 
@@ -21,10 +21,9 @@ export default function ItemListContainer({ items, loading, error, title, classN
         <div className={`container mx-auto my-8 ${className}`}>
             {
                 title ? (
-                    <h2 className="mb-4 text-3xl tracking-widest text-slate-600">
-                        <ChevronDoubleRightIcon className="mr-4 inline-block h-8 w-8 text-primary-500" />
+                    <AppHeader tag="h2" size="h1" className="mb-6">
                         {title}
-                    </h2>
+                    </AppHeader>
                 ) : null
             }
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">

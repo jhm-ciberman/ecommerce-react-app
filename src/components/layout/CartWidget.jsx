@@ -1,13 +1,14 @@
 import { ShoppingBagIcon } from '@heroicons/react/24/outline';
+import { Link } from 'react-router-dom';
 
 export default function CartWidget({ badgeCount = 0}) {
 
     return (
-        <a href="/" className="relative p-4 transition duration-300 hover:text-primary-600">
+        <Link to="/cart" className="relative p-4 transition duration-300 hover:text-primary-600">
             <ShoppingBagIcon className="inline w-6" />
             <div className="absolute right-1 top-2 rounded-full bg-primary-600 px-1 text-xs text-primary-100">
                 { badgeCount > 99 ? '99+' : badgeCount }
             </div>
-        </a>
+        </Link>
     );
 }
