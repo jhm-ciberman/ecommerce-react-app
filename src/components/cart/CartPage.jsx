@@ -1,75 +1,19 @@
 import QuantitySelector from "../item-detail/QuantitySelector";
-import AppButtonPrimary from "../AppButtonPrimary";
-import AppCard from "../AppCard";
-import AppHeader from "../AppHeader";
+import AppButtonPrimary from "../common/AppButtonPrimary";
+import AppCard from "../common/AppCard";
+import AppHeader from "../common/AppHeader";
 import {
     ChevronRightIcon,
     TrashIcon,
     ShoppingBagIcon,
 } from "@heroicons/react/24/solid";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
 export default function CartPage() {
+    const cart = useContext(CartContext);
 
-    const items = [
-        {
-            id: '1',
-            title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
-            price: 109.95,
-            description: 'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',
-            category: 'Fashion',
-            image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
-            rating: {
-                rate: 3.9,
-                count: 120
-            },
-            quantity: 1,
-            stock: 10,
-        },
-        {
-            id: '2',
-            title: 'Mens Casual Premium Slim Fit T-Shirts ',
-            price: 22.3,
-            description: 'Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.',
-            category: 'Fashion',
-            image: 'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
-            rating: {
-                rate: 4.1,
-                count: 259
-            },
-            quantity: 2,
-            stock: 3,
-        },
-        {
-            id: '3',
-            title: 'Mens Cotton Jacket',
-            price: 55.99,
-            description: 'great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. ',
-            category: 'Fashion',
-            image: 'https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg',
-            rating: {
-                rate: 4.7,
-                count: 500
-            },
-            quantity: 4,
-            stock: 8,
-        },
-        {
-            id: '4',
-            title: 'Mens Casual Slim Fit',
-            price: 15.99,
-            description: 'The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.',
-            category: 'Fashion',
-            image: 'https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg',
-            rating: {
-                rate: 2.1,
-                count: 430
-            },
-            quantity: 6,
-            stock: 10,
-        },
-    ];
-
-    //const items = [];
+    const items = cart.items;
 
     if (items.length === 0) {
         return (
@@ -94,7 +38,7 @@ export default function CartPage() {
     return (
         <div className="container mx-auto my-16 lg:max-w-4xl">
             <div className="mb-8 flex items-center justify-between">
-                <AppHeader tag="h1">Cart</AppHeader>
+                <AppHeader as="h1">Cart</AppHeader>
                 <button
                     className="text-slate-400 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-600/50"
                     onClick={() => { }}
@@ -146,6 +90,7 @@ export default function CartPage() {
 
             <div className="mt-8 flex items-center justify-end">
                 <AppButtonPrimary
+                    to="/checkout"
                     className="flex items-center justify-center rounded-full bg-primary-600 px-8 py-3 text-base font-thin uppercase tracking-wider text-white
                     hover:bg-primary-700 focus:ring-2 focus:ring-primary-600/50"
                     onClick={() => { }}

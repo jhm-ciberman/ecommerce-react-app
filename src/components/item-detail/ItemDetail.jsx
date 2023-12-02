@@ -1,6 +1,6 @@
 import { useState } from "react";
-import LoadingSpinner from "../LoadingSpinner";
-import NetworkErrorCard from "../NetworkErrorCard";
+import LoadingSpinner from "../common/LoadingSpinner";
+import NetworkErrorCard from "../common/NetworkErrorCard";
 import QuantitySelector from "./QuantitySelector";
 
 export default function ItemDetail({ item, loading, error }) {

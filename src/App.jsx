@@ -5,22 +5,27 @@ import HomePage from "./components/home/HomePage";
 import CategoryPage from "./components/category/CategoryPage";
 import ItemDetailPage from "./components/item-detail/ItemDetailPage";
 import AppLayout from "./components/layout/AppLayout";
-import NetworkErrorCard from "./components/NetworkErrorCard";
+import NetworkErrorCard from "./components/common/NetworkErrorCard";
 import CartPage from "./components/cart/CartPage";
+import CheckoutPage from "./components/checkout/CheckoutPage";
+import { CartContextProvider } from "./context/CartContext";
 
 export default function App() {
     return (
         <BrowserRouter>
             <AppLayout>
-                <Routes>
-                    <Route exact path="/" element={<HomePage />} />
-                    <Route exact path="/category/:categorySlug" element={<CategoryPage />} />
-                    <Route exact path="/item/:itemId" element={<ItemDetailPage />} />
-                    <Route exact path="/cart" element={<CartPage />} />
+                <CartContextProvider>
+                    <Routes>
+                        <Route exact path="/" element={<HomePage />} />
+                        <Route exact path="/category/:categorySlug" element={<CategoryPage />} />
+                        <Route exact path="/item/:itemId" element={<ItemDetailPage />} />
+                        <Route exact path="/cart" element={<CartPage />} />
+                        <Route exact path="/checkout" element={<CheckoutPage />} />
 
-                    { /* 404 */}
-                    <Route path="*" element={<NetworkErrorCard status={404} />} />
-                </Routes>
+                        { /* 404 */}
+                        <Route path="*" element={<NetworkErrorCard status={404} />} />
+                    </Routes>
+                </CartContextProvider>
             </AppLayout>
         </BrowserRouter>
     );

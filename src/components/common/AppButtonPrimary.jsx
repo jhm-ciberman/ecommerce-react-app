@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 
-export default function AppButton({ children, className, ...props }) {
+export default function AppButton({ as, children, className, ...props }) {
+
+    const Component = as || Link;
 
     return (
-        <Link
+        <Component
             className={`
                 inline-flex items-center justify-center rounded-full border border-transparent bg-primary-600
                 px-4 py-2 text-base font-medium text-white shadow-sm
@@ -13,6 +15,6 @@ export default function AppButton({ children, className, ...props }) {
             {...props}
         >
             {children}
-        </Link>
+        </Component>
     );
 }
