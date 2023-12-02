@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { validate, confirmed, email, max, min, phone, required } from '../../services/validation';
 import AppInput from '../common/AppInput';
 import AppButtonPrimary from '../common/AppButtonPrimary';
+import AppCard from '../common/AppCard';
 import { ChevronRightIcon } from '@heroicons/react/24/solid';
 
 export default function CheckoutForm({ onSubmit, isSubmitting }) {
@@ -86,29 +87,30 @@ export default function CheckoutForm({ onSubmit, isSubmitting }) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 gap-6">
-                <h2 className="text-lg font-medium text-gray-900">
-                    Enter your details
-                </h2>
-                <div className="grid grid-cols-2 gap-6">
-                    {renderInput('firstName', 'First name', 'text')}
-                    {renderInput('lastName', 'Last name', 'text')}
-                    {renderInput('phone', 'Phone', 'phone')}
-                    <div className="col-span-2 border-b border-gray-200"></div>
-                    {renderInput('email', 'Email', 'email')}
-                    {renderInput('emailConfirm', 'Confirm email', 'email')}
+            <AppCard className="p-8">
+                <div className="grid grid-cols-1 gap-6">
+                    <h2 className="text-lg font-medium text-gray-900">
+                        Enter your details
+                    </h2>
+                    <div className="grid grid-cols-2 gap-6">
+                        {renderInput('firstName', 'First name', 'text')}
+                        {renderInput('lastName', 'Last name', 'text')}
+                        {renderInput('phone', 'Phone', 'phone')}
+                        <hr className="col-span-2 border-gray-200" />
+                        {renderInput('email', 'Email', 'email')}
+                        {renderInput('emailConfirm', 'Confirm email', 'email')}
+                    </div>
                 </div>
-            </div>
-
+            </AppCard>
             <div className="mt-8 flex items-center justify-end">
                 <AppButtonPrimary
                     as="button"
                     type="submit"
-                    className="px-6 py-3"
+                    className="px-8 py-3"
                     disabled={isSubmitting}
                 >
-                    {isSubmitting ? 'Submitting...' : 'Submit'}
-                    <ChevronRightIcon className="ml-2 inline-block h-6 w-6 text-white" />
+                    Confirm Order
+                    <ChevronRightIcon className="ml-4 inline-block h-6 w-6 text-white" />
                 </AppButtonPrimary>
             </div>
         </form>

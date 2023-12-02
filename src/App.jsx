@@ -9,6 +9,7 @@ import NetworkErrorCard from "./components/common/NetworkErrorCard";
 import CartPage from "./components/cart/CartPage";
 import CheckoutPage from "./components/checkout/CheckoutPage";
 import { CartContextProvider } from "./context/CartContext";
+import CheckoutSuccessPage from "./components/checkout/CheckoutSuccessPage";
 
 export default function App() {
     return (
@@ -21,6 +22,7 @@ export default function App() {
                         <Route exact path="/item/:itemId" element={<ItemDetailPage />} />
                         <Route exact path="/cart" element={<CartPage />} />
                         <Route exact path="/checkout" element={<CheckoutPage />} />
+                        <Route exact path="/checkout/success" element={<CheckoutSuccessPage />} />
 
                         { /* 404 */}
                         <Route path="*" element={<NetworkErrorCard status={404} />} />
