@@ -14,21 +14,21 @@ import CheckoutSuccessPage from "./components/checkout/CheckoutSuccessPage";
 export default function App() {
     return (
         <BrowserRouter>
-            <AppLayout>
-                <CartContextProvider>
-                    <Routes>
-                        <Route exact path="/" element={<HomePage />} />
-                        <Route exact path="/category/:categorySlug" element={<CategoryPage />} />
-                        <Route exact path="/item/:itemId" element={<ItemDetailPage />} />
-                        <Route exact path="/cart" element={<CartPage />} />
-                        <Route exact path="/checkout" element={<CheckoutPage />} />
-                        <Route exact path="/checkout/success" element={<CheckoutSuccessPage />} />
+            <CartContextProvider>
+                <AppLayout>
+                        <Routes>
+                            <Route exact path="/" element={<HomePage />} />
+                            <Route exact path="/category/:categorySlug" element={<CategoryPage />} />
+                            <Route exact path="/item/:itemId" element={<ItemDetailPage />} />
+                            <Route exact path="/cart" element={<CartPage />} />
+                            <Route exact path="/checkout" element={<CheckoutPage />} />
+                            <Route exact path="/checkout/success" element={<CheckoutSuccessPage />} />
 
-                        { /* 404 */}
-                        <Route path="*" element={<NetworkErrorCard status={404} />} />
-                    </Routes>
-                </CartContextProvider>
-            </AppLayout>
+                            { /* 404 */}
+                            <Route path="*" element={<NetworkErrorCard status={404} />} />
+                        </Routes>
+                </AppLayout>
+            </CartContextProvider>
         </BrowserRouter>
     );
 }

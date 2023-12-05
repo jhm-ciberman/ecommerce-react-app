@@ -62,8 +62,7 @@ export default function Navbar() {
                     { desktopLinks }
                 </ul>
                 <div className="flex">
-                    { /* Hardcoded badge count for now */ }
-                    <CartWidget badgeCount={ 42 } />
+                    <CartWidget />
                 </div>
             </div>
 

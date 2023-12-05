@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 
-export default function AppButton({ as, children, className, ...props }) {
+export default function AppButtonPrimary({ as, children, className, ...props }) {
 
-    const Component = as || Link;
+    const Component = as || (
+        props.to ? Link : 'button'
+    );
 
     return (
         <Component

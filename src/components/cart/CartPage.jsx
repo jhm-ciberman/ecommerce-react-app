@@ -35,13 +35,33 @@ export default function CartPage() {
         );
     }
 
+    function handleRemoveItem(item) {
+        if (window.confirm(`Are you sure you want to remove ${item.title} from your cart?`) === false) {
+            return;
+        }
+
+        cart.removeItem(item.id);
+    }
+
+    function handleQuantityChange(item, quantity) {
+        cart.updateItemQuantity(item.id, quantity);
+    }
+
+    function handleClearCart() {
+        if (window.confirm('Are you sure you want to remove all items from your cart?') === false) {
+            return;
+        }
+
+        cart.clear();
+    }
+
     return (
         <div className="container mx-auto my-16 lg:max-w-4xl">
             <div className="mb-8 flex items-center justify-between">
                 <AppHeader as="h1">Cart</AppHeader>
                 <button
                     className="text-slate-400 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-600/50"
-                    onClick={() => { }}
+                    onClick={() => handleClearCart()}
                 >
                     Clear cart
                 </button>
@@ -59,12 +79,19 @@ export default function CartPage() {
                                     {item.title}
                                 </p>
                                 <div className="mt-4 flex items-center justify-start">
-                                    <QuantitySelector value={item.quantity} min={1} max={item.stock} onChange={() => { }} size="sm" />
+                                    <QuantitySelector
+                                        value={item.quantity}
+                                        min={1}
+                                        max={item.stock}
+                                        onChange={(quantity) => handleQuantityChange(item, quantity)}
+                                        size="sm" />
                                     <button
                                         className="ml-4 text-gray-500 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-gray-500/50"
                                         role="button"
                                         title="Remove item"
-                                        aria-label="Remove item">
+                                        aria-label="Remove item"
+                                        onClick={() => handleRemoveItem(item)}
+                                    >
                                         <TrashIcon className="h-5 w-5"/>
                                     </button>
                                 </div>

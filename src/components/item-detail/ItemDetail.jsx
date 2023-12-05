@@ -1,18 +1,26 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import LoadingSpinner from "../common/LoadingSpinner";
 import NetworkErrorCard from "../common/NetworkErrorCard";
 import QuantitySelector from "./QuantitySelector";
+import { CartContext } from "../../context/CartContext";
+import AppButtonPrimary from "../common/AppButtonPrimary";
 
-export default function ItemDetail({ item, loading, error }) {
+export default function ItemDetail({ item, loading, error, canAddToCart, onAddedToCart }) {
 
     const [quantity, setQuantity] = useState(1);
+
+
+    const cart = useContext(CartContext);
 
     function handleQuantityChange(newValue) {
         setQuantity(newValue);
     }
 
     function handleAddToCart() {
-        window.alert(`Adding ${quantity} of ${item.title} to cart`);
+        if (canAddToCart) return;
+
+        cart.addItem(item, quantity);
+        onAddedToCart();
     }
 
     if (error) {
@@ -29,6 +37,24 @@ export default function ItemDetail({ item, loading, error }) {
 
     if (!item) {
         return <></>;
+    }
+
+    function renderQuantitySelector() {
+        return (
+            <>
+                <div className="flex items-center justify-between">
+                    <p className="ml-4 text-base font-thin tracking-wider text-gray-600">
+                        Quantity
+                    </p>
+                    <QuantitySelector min={item.min} max={item.max} value={quantity} onChange={handleQuantityChange} />
+                </div>
+                <div className="mt-4">
+                    <AppButtonPrimary onClick={handleAddToCart} className="w-full">
+                        Add to cart
+                    </AppButtonPrimary>
+                </div>
+            </>
+        );
     }
 
     return (
@@ -54,23 +80,8 @@ export default function ItemDetail({ item, loading, error }) {
                 </p>
 
                 <div className="mt-8 rounded-2xl border-4 border-orange-600/20 bg-white p-4">
-                    <div className="flex items-center justify-between">
-                        <p className="ml-4 text-base font-thin tracking-wider text-gray-600">
-                            Quantity
-                        </p>
-                        <QuantitySelector min={item.min} max={item.max} value={quantity} onChange={handleQuantityChange} />
-                    </div>
-                    <div className="mt-4">
-                        <button
-                            className="w-full rounded-full bg-primary-600 px-4 py-3 text-base font-thin uppercase tracking-wider text-white hover:bg-primary-700 focus:ring-2 focus:ring-primary-600/50"
-                            onClick={handleAddToCart}
-                        >
-                            Add to cart
-                        </button>
-                    </div>
+                    { renderQuantitySelector() }
                 </div>
-
-
             </div>
         </div>
     );
