@@ -1,9 +1,20 @@
 # Coderhouse - Ecommerce project
 
-A simple ecommerce project for the Coderhouse ReactJS course. The project uses ReactJS and TailwindCSS.
+> [!NOTE]
+> **➡️ CHECK THE LIVE DEMO HERE:** https://laretto-react-app.web.app/
+
+
+A simple ecommerce project for the Coderhouse ReactJS course. The project uses:
+
+- 🚀 **ReactJS** for the frontend
+- 🎨 **TailwindCSS** for styling
+- 🔥 **Firebase Firestore** for the NoSQL database
+- 🌐 **Firebase Hosting** for deployment
+- 🧹 **ESLint** for code style and formatting
+- 🤖 **GitHub Actions** for Continuous Deployment
+
 
 ![image](https://github.com/jhm-ciberman/ecommerce-react-app/assets/7988351/174e786e-b561-4e6e-8b3b-d55983de5e64)
-
 
 ## Installation
 
@@ -49,8 +60,11 @@ cd admin && npm install && node import-products.js
 
 The script will create a `products` collection in your database and populate it with the products from the fake store API. (https://fakestoreapi.com/products)
 
-- DO NOT upload this script to a production server. It is only meant to be run once in a local environment to populate the database with products.
-- DO NOT run this script twice. It will duplicate the products in the database.
+> [!WARNING]
+> DO NOT upload this script to a production server. It is only meant to be run > once in a local environment to populate the database with products.
+
+> [!WARNING]
+> DO NOT run this script twice. It will duplicate the products in the database.
 
 ## Notes
 
@@ -68,4 +82,6 @@ This project uses tailwind so it's recomended that you instruct in your `.vscode
 }
 ```
 
+## License
 
+[MIT](LICENSE.txt)
