@@ -50,14 +50,14 @@ const firebaseConfig = {
     appId: "1:831803443789:web:10e48ebfb6340fa6326a04"
 };
 
-export default class ProductsService {
+export default class DbService {
 
     /** @private */
     static _instance = null;
 
-    /** @returns {ProductsService} Singleton instance */
+    /** @returns {DbService} Singleton instance */
     static get instance() {
-        return ProductsService._instance || (ProductsService._instance = new ProductsService());
+        return DbService._instance || (DbService._instance = new DbService());
     }
 
     _app = null;
@@ -65,11 +65,11 @@ export default class ProductsService {
     _firestore = null;
 
     constructor() {
-        if (ProductsService._instance) {
-            throw new Error('ProductsService is a singleton');
+        if (DbService._instance) {
+            throw new Error('DbService is a singleton');
         }
 
-        ProductsService._instance = this;
+        DbService._instance = this;
 
         this._app = initializeApp(firebaseConfig);
         this._firestore = getFirestore(this._app);

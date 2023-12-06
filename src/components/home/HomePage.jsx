@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import HeroImage from "./HeroImage";
 import CategoryCard from "./CategoryCard";
 import ItemLIstContainer from "../item-list/ItemListContainer";
-import ProductsService from "../../services/ProductsService";
+import DbService from "../../services/DbService";
 
 import categoryForHimImage from "@assets/images/category-for-him.jpg";
 import categoryHandbagsImage from "@assets/images/category-handbags.jpg";
@@ -22,7 +22,7 @@ export default function HomePage() {
             setItems([]);
 
             try {
-                const items = await ProductsService.instance.getIndexProducts();
+                const items = await DbService.instance.getIndexProducts();
                 setItems(items);
             } catch (error) {
                 setError(error);

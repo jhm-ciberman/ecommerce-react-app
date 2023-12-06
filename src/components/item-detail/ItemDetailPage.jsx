@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import ItemDetail from "./ItemDetail";
-import ProductsService from "../../services/ProductsService";
+import DbService from "../../services/DbService";
 import { useEffect, useState } from "react";
 import ItemListContainer from "../item-list/ItemListContainer";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
@@ -27,7 +27,7 @@ export default function ItemDetailPage() {
             setItem(null);
 
             try {
-                const item = await ProductsService.instance.getProduct(itemId);
+                const item = await DbService.instance.getProduct(itemId);
                 if (cancelled) return;
 
                 setItem(item);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ProductsService from "../../services/ProductsService";
+import DbService from "../../services/DbService";
 import ItemListContainer from "../item-list/ItemListContainer";
 import { useParams } from "react-router";
 
@@ -23,7 +23,7 @@ export default function CategoryPage() {
             setItems([]);
 
             try {
-                const category = await ProductsService.instance.getCategory(categorySlug);
+                const category = await DbService.instance.getCategory(categorySlug);
                 if (cancelled) return;
 
                 setItems(category.items);
