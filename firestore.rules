@@ -3,10 +3,16 @@ rules_version = '2';
 service cloud.firestore {
     match /databases/{database}/documents {
 
-        // Products
-        // Allow reads to all products, limit to 40 per query
         match /products/{productId} {
-            allow read: if request.query.limit <= 40;
+            allow read: if true;
+        }
+
+        match /orders/{orderId} {
+            allow read: if true;
+
+            allow create: if true;
+            allow update: if false;
+            allow delete: if false;
         }
     }
 }
