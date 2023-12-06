@@ -11,7 +11,7 @@ export default function CartWidget() {
 
     function renderBadge() {
         return (
-            <div className="absolute right-1 top-2 rounded-full bg-primary-600 px-1 text-xs text-primary-100">
+            <div className="absolute right-1 top-2 flex h-[1.2rem] min-w-[1.2rem] items-center justify-center rounded-full bg-primary-600 px-1 text-xs text-primary-100">
                 {badgeCount > 99 ? '99+' : badgeCount}
             </div>
         );

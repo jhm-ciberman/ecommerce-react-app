@@ -9,6 +9,8 @@ import {
     collection,
     getDocs,
     documentId,
+    addDoc,
+    serverTimestamp,
 } from 'firebase/firestore';
 
 /**
@@ -28,6 +30,26 @@ import {
  * @typedef {Object} Category
  * @property {string} name
  * @property {string} slug
+ */
+
+/**
+ * @typedef {Object} Order
+ * @property {string} id
+ * @property {Object} user
+ * @property {string} user.firstName
+ * @property {string} user.lastName
+ * @property {string} user.email
+ * @property {string} user.phone
+ * @property {Array} items
+ * @property {number} items[].id
+ * @property {number} items[].quantity
+ * @property {number} items[].price
+ * @property {string} items[].title
+ * @property {string} items[].image
+ * @property {number} total
+ * @property {'pending'|'paid'|'shipped'|'delivered'} status
+ * @property {string} createdAt
+ * @property {string} updatedAt
  */
 
 export class FetchError extends Error {
@@ -187,6 +209,29 @@ export default class DbService {
         return {
             name: name,
             items: this._takeDocs(querySnapshot, max),
+        };
+    }
+
+    /**
+     * Stores the given order in the API.
+     *
+     * @param {Order} order
+     * @returns {Promise<Order>}
+     */
+    async storeOrder(order) {
+        const docRef = await addDoc(
+            collection(this._firestore, 'orders'),
+            {
+                ...order,
+                total: order.items.reduce((total, item) => total + item.price * item.quantity, 0),
+                createdAt: serverTimestamp(),
+                updatedAt: serverTimestamp(),
+            }
+        );
+
+        return {
+            ...order,
+            id: docRef.id,
         };
     }
 }

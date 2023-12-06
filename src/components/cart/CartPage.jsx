@@ -99,7 +99,7 @@ export default function CartPage() {
                         </div>
                         <div className="mt-4 flex w-full items-center justify-end md:ml-4 md:mt-0 md:w-auto">
                             <p className="mb-2 text-lg font-thin tracking-widest text-primary-600">
-                                {item.price.toFixed(2)} USD
+                                { (item.price * item.quantity).toFixed(2) } USD
                             </p>
                         </div>
                     </div>
@@ -110,7 +110,7 @@ export default function CartPage() {
                         Total
                     </p>
                     <p className="mb-2 text-lg font-thin tracking-widest text-primary-600">
-                        109.95 USD
+                        { cart.getTotalPrice().toFixed(2) } USD
                     </p>
                 </div>
             </AppCard>

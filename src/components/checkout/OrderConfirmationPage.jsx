@@ -5,7 +5,7 @@ import {
     ChevronRightIcon,
 } from "@heroicons/react/24/solid";
 
-export default function CheckoutSuccessPage() {
+export default function OrderConfirmationPage() {
 
     return (
         <div className="container mx-auto my-16 max-w-lg">

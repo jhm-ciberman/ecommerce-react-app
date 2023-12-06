@@ -76,7 +76,6 @@ export function max(max, errorMessage) {
  */
 export function confirmed(otherValue, errorMessage) {
     return (value) => {
-        console.log(value, otherValue);
         if (value !== otherValue) {
             return errorMessage || 'Emails do not match';
         }

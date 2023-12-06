@@ -4,6 +4,7 @@ import AppInput from '../common/AppInput';
 import AppButtonPrimary from '../common/AppButtonPrimary';
 import AppCard from '../common/AppCard';
 import { ChevronRightIcon } from '@heroicons/react/24/solid';
+import LoadingSpinner from '../common/LoadingSpinner';
 
 export default function CheckoutForm({ onSubmit, isSubmitting }) {
 
@@ -57,9 +58,11 @@ export default function CheckoutForm({ onSubmit, isSubmitting }) {
 
         const newErrors = revalidateForm();
 
-        if (Object.keys(newErrors).length === 0) {
-            onSubmit(form);
+        if (Object.values(newErrors).some((e) => e)) {
+            return;
         }
+
+        onSubmit(form);
     }
 
     function renderInput(name, label, type = 'text') {
@@ -109,8 +112,17 @@ export default function CheckoutForm({ onSubmit, isSubmitting }) {
                     className="px-8 py-3"
                     disabled={isSubmitting}
                 >
-                    Confirm Order
-                    <ChevronRightIcon className="ml-4 inline-block h-6 w-6 text-white" />
+                    {
+                        isSubmitting
+                            ? <>
+                                <LoadingSpinner className="mr-4 h-6 w-6" />
+                                Just a moment...
+                            </>
+                            : <>
+                                Confirm Order { isSubmitting }
+                                <ChevronRightIcon className="ml-4 inline-block h-6 w-6 text-white" />
+                            </>
+                    }
                 </AppButtonPrimary>
             </div>
         </form>
