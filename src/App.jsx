@@ -10,6 +10,7 @@ import CartPage from "./components/cart/CartPage";
 import CheckoutPage from "./components/checkout/CheckoutPage";
 import { CartContextProvider } from "./context/CartContext";
 import OrderConfirmationPage from "./components/checkout/OrderConfirmationPage";
+import ScrollToTop from "./components/layout/ScrollToTop";
 
 export default function App() {
     return (
@@ -29,6 +30,7 @@ export default function App() {
                         </Routes>
                 </AppLayout>
             </CartContextProvider>
+            <ScrollToTop />
         </BrowserRouter>
     );
 }
