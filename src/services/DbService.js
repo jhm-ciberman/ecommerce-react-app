@@ -142,8 +142,6 @@ export default class DbService {
         const product = ({
             ...docSnapshot.data(),
             id: docSnapshot.id,
-            min: 1,
-            max: 10,
         });
 
         return {

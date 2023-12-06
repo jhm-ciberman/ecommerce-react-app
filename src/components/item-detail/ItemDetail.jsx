@@ -46,7 +46,7 @@ export default function ItemDetail({ item, loading, error, canAddToCart, onAdded
                     <p className="ml-4 text-base font-thin tracking-wider text-gray-600">
                         Quantity
                     </p>
-                    <QuantitySelector min={item.min} max={item.max} value={quantity} onChange={handleQuantityChange} />
+                    <QuantitySelector min={1} max={item.stock} value={quantity} onChange={handleQuantityChange} />
                 </div>
                 <div className="mt-4">
                     <AppButtonPrimary onClick={handleAddToCart} className="w-full">
